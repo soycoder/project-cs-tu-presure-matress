@@ -1,0 +1,5 @@
+['Supine', 'LeftSide', 'RightSide', 'NON-Detected']
+Supine&[1,0,0,0]
+LeftSide&[0,1,0,0]
+RightSide&[0,0,1,0]
+NON-Detected&[0,0,0,1]
