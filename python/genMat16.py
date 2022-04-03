@@ -11,7 +11,7 @@ class App(tk.Frame):
 
 import time
 import numpy as np
-
+from csv import writer
 
 
 
@@ -70,7 +70,8 @@ while True:
             x = dat.astype(int)
             b = np.flip(x, 0)
             data = b.tolist()
-            
+
+
             # loop
             for i in range(height): #Rows
                 for j in range(width): #Columns

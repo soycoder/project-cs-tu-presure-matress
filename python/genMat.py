@@ -3,6 +3,7 @@ from tkinter import *
 import serial
 # needs Python Image Library (PIL)
 from PIL import Image, ImageDraw
+import numpy as np
 
 class App(tk.Frame):
     def __init__(self, master=None):
@@ -15,7 +16,7 @@ width=160
 height=480
 
 # Set Board
-arduino = serial.Serial(port='COM7', baudrate=115200, timeout=.1)
+# arduino = serial.Serial(port='COM7', baudrate=115200, timeout=.1)
 
 #
 image_mat = Image.new("RGB", (width, height), (255, 255, 255))
@@ -36,19 +37,22 @@ width = 16
 firstContact = False
 
 while True:
-    inByte = arduino.readline()
+    inByte = []
+    # arduino.readline()
     if firstContact: 
         if inByte[0] == 'A':
             # arduino.clea      # clear the serial port buffer
             firstContact = True;     # you've had first contact from the microcontroller
-            arduino.write('A');       # ask for more
+            # arduino.write('A');       # ask for more
     
     else:
-        res = inByte.decode(encoding='Ascii', errors='ignore')
+        res = []
+        # inByte.decode(encoding='Ascii', errors='ignore')
         # print(inByte.decode(encoding='Ascii', errors='ignore'))
-        arduino.write(b'A')
+        # arduino.write(b'A')
 
-        data = res.split()
+        data = np.zeros(100)
+        # res.split()
         # print(len(data))
         if len(data) == height*width:
             for i in range(height): #Rows
