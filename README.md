@@ -4,6 +4,30 @@
 ## 📌 สิ่งที่จำเป็น
 1. `python` (แนะนำเวอร์ชัน 3.9.4)
 2. `venv` module (เครื่องมือสำหรับการสร้าง virtual environments บน python)
+3. (Optional) `git`
+
+![](https://i.imgur.com/waxVImv.png)
+
+## 🔍 ขั้นตอนการดาวน์โหลดซอร์สโค้ด
+### 🔸วิธีที่ 1 : ดาวน์โหลดไฟล์ .zip
+1. ดาวน์โหลดโปรเจคบนกิตฮับ (GitHub) ที่อยู่ลิงก์ [project-cs-tu-presure-matress-main.zip](https://github.com/soycoder/project-cs-tu-presure-matress/archive/refs/heads/main.zip)
+2. แตกไฟล์ .zip
+
+3. ไปยังโฟลเดอร์ project-cs-tu-presure-matress-main
+
+
+
+### 🔸วิธีที่ 2 : Cloning ผ่าน git
+
+1. Cloning โปรเจค
+
+        git clone https://github.com/soycoder/project-cs-tu-presure-matress.git
+
+2. เลือกเวอร์ชัน CS403
+
+        cd project-cs-tu-presure-matress
+        git checkout -b CS403
+
 
 ![](https://i.imgur.com/waxVImv.png)
 
