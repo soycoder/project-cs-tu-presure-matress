@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+  <title>Pressure Body Monitoring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="../static/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color: #e6f5f6;">
+
+  <!-- ! Loading Page -->
+  <div id="loading">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_lgb7bjey.json" background="transparent"
+      speed="0.5" style="margin: 40vh auto; width: 100px; height: 100px;" loop autoplay></lottie-player>
+  </div>
+
+  <!-- ! Start -->
+
+  <div id="main" class="container-fluid" style="padding-right: 0px;">
+    <div class="row" style="margin-right: 0px;padding-right: 0px;margin-left:-15px">
+      <!-- Nav Sidebar -->
+      <div class="col-1 self-navbar">
+        <a class="text-decoration-none" href="#">
+          <div class="card self-nav" style="margin-left: 8px;">
+            <div class="text-center" style="margin-top: 15px;">
+              <i class="fa fa-home" style="font-size: 30px;"></i>
+            </div>
+            <span class="self-nav-link">Home</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-4" style="margin-left: 10px;">
+        <div style="margin-top: 80px">
+          <div class="card" style="background-color: transparent; border: none">
+            <div class="self-profile-img">
+              <img src="../static/img/like-icon.png" class="card-img-top self-card-img-top" />
+            </div>
+          </div>
+
+          <div class="card self-card-30">
+            <div class="card-body">
+              <h5 class="card-title mt-5 text-center font-weight-bold" style="font-family: 'Prompt', sans-serif;">
+                อภิสิทธิ์ วงค์สอน
+              </h5>
+              <p class="card-text text-center">
+                <small class="text-muted">22 years old</small>
+              </p>
+            </div>
+            <!-- sub-profile -->
+            <div class="row" style="margin: 0 10px;">
+              <div class="col">
+                <p class="card-text text-center">
+                  <small class="text-topic">หมู่เลือด</small>
+                </p>
+                <p>
+                <div class="card-text text-center font-weight-bold" style="font-size: large;">B</div>
+                </p>
+              </div>
+              <div class="col">
+                <p class="card-text text-center">
+                  <small class="text-topic">ส่วนสูง</small>
+                </p>
+                <p>
+                <div class="card-text text-center font-weight-bold" style="font-size: large;">170<span
+                    class="text-topic" style="font-size: small;"> cm</span></div>
+                </p>
+              </div>
+              <div class="col">
+                <p class="card-text text-center">
+                  <small class="text-topic">น้ำหนัก</small>
+                </p>
+                <p>
+                <div class="card-text text-center font-weight-bold" style="font-size: large;">56<span class="text-topic"
+                    style="font-size: small;"> kg</span></div>
+                </p>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+      <div class="col-7" style="padding-right: 0px;">
+        <div class="card mt-10 self-right" style="padding-top: 20px;">
+          <!-- row -->
+          <div class="row container">
+            <!-- col -->
+            <div class="col-6 pl-5 self-card-right">
+              <h2 class="text-topic" style="font-family: 'Prompt', sans-serif;">แรงกดของลำตัว</h2>
+
+              <!-- Card - gif format-->
+              <!-- <div class="card text-center mt-10 card-green" img-mat>
+                <div class="align-middle">
+                  <img id="img-mat" class="self-pessure-mat" />
+                </div>
+              </div> -->
+
+              <!-- Card - Plotly format html-->
+              <div class="card text-center mt-10 card-green">
+                <div class="align-middle">
+                  <img id="img-mat-plotly" class="self-pessure-mat" />
+                </div>
+              </div>
+            </div>
+            <!-- col -->
+
+            <!-- col -->
+            <div class="col-6">
+              <!-- Card -->
+              <div class="card mt-20 card-green" style="margin-top: 35px;">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <h6 class="card-title text-topic font-weight-bold">Date</h6>
+                      <p class="card-text font-weight-bold" id="date_th"> </p>
+                    </div>
+                    <div class="col-6">
+                      <h6 class="card-title text-topic font-weight-bold">Time</h6>
+                      <p class="card-text font-weight-bold" id="time_th"> </p>
+                    </div>
+                  </div>
+                  </p>
+                </div>
+              </div>
+              <!-- Card -->
+
+              <h2 class="text-topic" style="font-family: 'Prompt', sans-serif;">ตำแหน่งเสี่ยงแผลกดทับ</h2>
+              <div id="riskList">
+                <!-- Card -->
+                <!-- <div class="card mt-10 card-green" style="margin-left: 40px;">
+                        <div class="card-body">
+                            <i class="fa fa-plus" style="font-size: 30px;color: #089bab;" ></i>
+                        </div>
+                    </div>
+                    <p class="font-weight-bold" style="margin: auto auto auto 20px;">บริเวณก้นกบ</p> -->
+                <!-- Card -->
+              </div>
+            </div>
+            <!-- col -->
+          </div>
+        </div>
+        <!-- row -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ! End -->
+  <script>
+    function onReady(callback) {
+      var intervalId = window.setInterval(function () {
+        if (document.getElementsByTagName('body')[0] !== undefined) {
+          window.clearInterval(intervalId);
+          callback.call(this);
+        }
+      }, 2000);
+    }
+
+    function setVisible(selector, visible) {
+      document.querySelector(selector).style.display = visible ? 'block' : 'none';
+    }
+
+    onReady(function () {
+      setVisible('#main', true);
+      setVisible('#loading', false);
+
+    });
+  </script>
+  <!-- * Date - Time-->
+  <script>
+    const date = new Date()
+
+    const result_date = date.toLocaleDateString('th-TH', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+
+    let _date = document.getElementById("date_th");
+    _date.innerText = result_date
+
+    let result_time = date.toLocaleString("th-TH")
+
+    let _time = document.getElementById("time_th");
+    _time.innerText = result_time.split(' ')[1].substring(0, 5) + " น."
+
+    function setImg(selector) {
+      // document.querySelector(selector).src = '';
+      document.querySelector(selector).src = "http://127.0.0.1:5000/get_image";
+    }
+
+    function setImgPlotly(selector) {
+      document.querySelector(selector).src = "http://127.0.0.1:5000/get_mat_plotly";
+    }
+
+    function setRiskPosition(selector) {
+      // document.querySelector(selector).innerHTML = '';
+      fetch('http://127.0.0.1:5000/get_riskPosition')
+        .then(response => response.json())
+        .then(data => {
+          // console.log(data)
+          document.querySelector(selector).innerHTML = data.riskPositionTag
+        });
+    }
+
+
+    setInterval(myTimer, 1000);
+    // myTimer()
+    async function myTimer() {
+      const d = new Date();
+      let _result_time = d.toLocaleString("th-TH")
+
+      let __time = document.getElementById("time_th");
+      __time.innerText = _result_time.split(' ')[1].substring(0, 5) + " น."
+      // setImg('#img-mat')
+      await setRiskPosition('#riskList')
+      await setImgPlotly('#img-mat-plotly')
+    }
+  </script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap");
+
+* {
+  font-family: "Prompt", sans-serif;
+}
+
+.self-navbar {
+  padding-left: 0;
+  padding-top: 45vh;
+  margin-left: 0;
+  background-color: #1f997f;
+  height: 100vh;
+  max-width: 100px !important;
+  border-radius: 0px 2.5rem 2.5rem 0px;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+}
+
+.self-nav {
+  color: #089bab !important;
+  height: 80px;
+  margin-top: 25px;
+  border-radius: 1.75rem;
+  text-decoration: none;
+}
+
+.self-nav:hover {
+  color: #089bab !important;
+  text-decoration: none; /* no underline */
+}
+
+.self-nav-link {
+  text-decoration: none; /* no underline */
+  margin-left: 18px;
+}
+
+.self-nav-link:hover {
+  color: #089bab !important;
+  text-decoration: none !important; /* no underline */
+}
+
+.self-right {
+  height: 100vh;
+}
+
+/* Image */
+.self-profile-img {
+  position: absolute;
+  top: -35px;
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 2px solid #6bc3cd;
+  align-self: center;
+  margin: 0 50%;
+  z-index: 1002;
+}
+
+.self-card-img-top {
+  width: 50px;
+  height: 50px;
+  align-self: center;
+  margin: 20%;
+}
+
+.self-card-30 {
+  border-radius: 30px;
+}
+
+.self-pessure-mat {
+  height: 400px;
+  /* margin: 15px; */
+}
+
+/* Topic */
+.text-topic {
+  color: #089bab;
+}
+
+/* Card Side Right */
+
+.self-right {
+  border-radius: 2.5rem 0px 0px 2.5rem !important;
+}
+
+.card-green {
+  background-color: #e6f5f6;
+  border-radius: 30px;
+  border: 2px solid #e6f5f6;
+  margin: 20px 0px;
+}
+
+/* Loading page */
+
+#loading {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 252, 252);
+  /* background-image: url("https://i.stack.imgur.com/MnyxU.gif"); */
+  background-repeat: no-repeat;
+  background-position: center;
+}
