@@ -7,22 +7,14 @@
 #define s3 A1
 
 // ! Output signal (OUT_pin)
-// Top
-#define OUT_top_pin 2
-#define wt0 3
-#define wt1 4
-#define wt2 5
-#define wt3 6
+#define OUT_pin 2
+#define w0 3
+#define w1 4
+#define w2 5
+#define w3 6
 
-// Bottom
-#define OUT_bottom_pin 9
-#define wb0 10
-#define wb1 11
-#define wb2 12
-#define wb3 13
-
-#define ROW_SIZE 32
-#define COL_SIZE 16
+#define ROW_SIZE 10
+#define COL_SIZE 10
 #define MAX_SIZE ROW_SIZE*COL_SIZE
 
 const boolean muxChannel[16][4] = {
@@ -60,18 +52,12 @@ void setup() {
   pinMode(s2, OUTPUT);
   pinMode(s3, OUTPUT);
 
-  pinMode(wt0, OUTPUT);
-  pinMode(wt1, OUTPUT);
-  pinMode(wt2, OUTPUT);
-  pinMode(wt3, OUTPUT);
+  pinMode(w0, OUTPUT);
+  pinMode(w1, OUTPUT);
+  pinMode(w2, OUTPUT);
+  pinMode(w3, OUTPUT);
 
-  pinMode(wb0, OUTPUT);
-  pinMode(wb1, OUTPUT);
-  pinMode(wb2, OUTPUT);
-  pinMode(wb3, OUTPUT);
-
-  pinMode(OUT_top_pin, OUTPUT);
-  pinMode(OUT_bottom_pin, OUTPUT);
+  pinMode(OUT_pin, OUTPUT);
 
 
   digitalWrite(s0, LOW);
@@ -79,18 +65,12 @@ void setup() {
   digitalWrite(s2, LOW);
   digitalWrite(s3, LOW);
 
-  digitalWrite(wt0, LOW);
-  digitalWrite(wt1, LOW);
-  digitalWrite(wt2, LOW);
-  digitalWrite(wt3, LOW);
+  digitalWrite(w0, LOW);
+  digitalWrite(w1, LOW);
+  digitalWrite(w2, LOW);
+  digitalWrite(w3, LOW);
 
-  digitalWrite(wb0, LOW);
-  digitalWrite(wb1, LOW);
-  digitalWrite(wb2, LOW);
-  digitalWrite(wb3, LOW);
-
-  digitalWrite(OUT_top_pin, HIGH);
-  digitalWrite(OUT_bottom_pin, HIGH);
+  digitalWrite(OUT_pin, HIGH);
 
 
   Serial.begin(115200);
@@ -99,10 +79,7 @@ void setup() {
 
   // Full of 0's of initial matrix
   for (byte j = 0; j < ROW_SIZE; j ++) {
-    if (j < ROW_SIZE / 2)
-      writeTopMux(j);
-    if (j >= ROW_SIZE / 2)
-      writeBottomMux(j - 16);
+      writeMux(j);
 
     for (byte i = 0; i < COL_SIZE; i ++)
       calibra[j][i] = 0;
@@ -112,10 +89,7 @@ void setup() {
   int n_round = 250;
   for (byte k = 0; k < n_round; k++) {
     for (byte j = 0; j < ROW_SIZE; j ++) {
-      if (j < ROW_SIZE / 2)
-        writeTopMux(j);
-      if (j >= ROW_SIZE / 2)
-        writeBottomMux(j - 16);
+      writeMux(j);
 
       for (byte i = 0; i < COL_SIZE; i ++)
         calibra[j][i] = calibra[j][i] + readMux(i);
@@ -246,8 +220,8 @@ int readMux(byte channel) {
   return val;
 }
 
-void writeTopMux(byte channel) {
-  byte controlPin[] = {wt0, wt1, wt2, wt3};
+void writeMux(byte channel) {
+  byte controlPin[] = {w0, w1, w2, w3};
 
   //loop through the 4 sig
   for (byte i = 0; i < 4; i ++) {
@@ -255,14 +229,6 @@ void writeTopMux(byte channel) {
   }
 }
 
-void writeBottomMux(byte channel) {
-  byte controlPin[] = {wb0, wb1, wb2, wb3};
-
-  //loop through the 4 sig
-  for (byte i = 0; i < 4; i ++) {
-    digitalWrite(controlPin[i], muxChannel[channel][i]);
-  }
-}
 
 void establishContact() {
   while (Serial.available() <= 0) {
