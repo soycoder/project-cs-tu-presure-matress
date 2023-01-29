@@ -1,17 +1,17 @@
 // Arduino Uno
 // ! Analog signal (SIG_pin)
-#define SIG_pin A0
-#define s0 A4
-#define s1 A3
+#define SIG_pin A4
+#define s0 A0
+#define s1 A1
 #define s2 A2
-#define s3 A1
+#define s3 A3
 
 // ! Output signal (OUT_pin)
-#define OUT_pin 2
-#define w0 3
-#define w1 4
-#define w2 5
-#define w3 6
+#define OUT_pin 6
+#define w0 2
+#define w1 3
+#define w2 4
+#define w3 5
 
 #define ROW_SIZE 10
 #define COL_SIZE 10
@@ -46,7 +46,6 @@ int minsensor = 254;                          // Variable for staring the min ar
 int multiplier = 254;
 
 void setup() {
-
   pinMode(s0, OUTPUT);
   pinMode(s1, OUTPUT);
   pinMode(s2, OUTPUT);
@@ -58,7 +57,6 @@ void setup() {
   pinMode(w3, OUTPUT);
 
   pinMode(OUT_pin, OUTPUT);
-
 
   digitalWrite(s0, LOW);
   digitalWrite(s1, LOW);
@@ -72,14 +70,13 @@ void setup() {
 
   digitalWrite(OUT_pin, HIGH);
 
-
   Serial.begin(115200);
 
   Serial.println("\n....Calibrating...\n");
 
   // Full of 0's of initial matrix
   for (byte j = 0; j < ROW_SIZE; j ++) {
-      writeMux(j);
+    writeMux(j);
 
     for (byte i = 0; i < COL_SIZE; i ++)
       calibra[j][i] = 0;
@@ -94,16 +91,13 @@ void setup() {
       for (byte i = 0; i < COL_SIZE; i ++)
         calibra[j][i] = calibra[j][i] + readMux(i);
     }
-//    Serial.print(".");
+    //    Serial.print(".");
   }
   Serial.println();
 
   //Print averages
   for (byte j = 0; j < ROW_SIZE; j ++) {
-    if (j < ROW_SIZE / 2)
-      writeTopMux(j);
-    if (j >= ROW_SIZE / 2)
-      writeBottomMux(j - 16);
+    writeMux(j);
 
     for (byte i = 0; i < COL_SIZE; i ++) {
       calibra[j][i] = calibra[j][i] / n_round;
@@ -111,16 +105,16 @@ void setup() {
         minsensor = calibra[j][i];
 
       // Show calibrate value
-      Serial.print(calibra[j][i]);
-      Serial.print("\t");
+//      Serial.print(calibra[j][i]);
+//      Serial.print("\t");
     }
-    Serial.println();
+//    Serial.println();
   }
 
-  Serial.println();
-  Serial.print("Minimum Value: ");
-  Serial.println(minsensor);
-  Serial.println();
+//  Serial.println();
+//  Serial.print("Minimum Value: ");
+//  Serial.println(minsensor);
+//  Serial.println();
 
   establishContact();
 
@@ -138,13 +132,10 @@ void loop() {
 
       // *NOTE* ส่งไปยัง python เก็บ 2 Sets:
       // (1) Fisrt Data : ไม่มีการปรับค่า
-      Serial.print(1);
-      Serial.print("\t");
+//      Serial.print(1);
+//      Serial.print("\t");
       for (int j = 0; j < ROW_SIZE; j++) {
-        if (j < ROW_SIZE / 2)
-          writeTopMux(j);
-        if (j >= ROW_SIZE / 2)
-          writeBottomMux(j - 16);
+        writeMux(j);
 
         for (int i = 0; i < COL_SIZE; i++) {
 
@@ -155,52 +146,50 @@ void loop() {
 
           Serial.print(valor);
           Serial.print("\t");
-
         }
         // Serial.println();
       }
-      delay(5000);
+      delay(1000);
 
       // (2) Second Data : มีการปรับค่า ตาม สเกล
-//      Serial.print(2);
-//      Serial.print("\t");
-//      for (int j = 0; j < ROW_SIZE; j++) {
-//        if (j < ROW_SIZE / 2)
-//          writeTopMux(j);
-//        if (j >= ROW_SIZE / 2)
-//          writeBottomMux(j - 16);
-//
-//        for (int i = 0; i < COL_SIZE; i++) {
-//
-//          valor = readMux(i);
-//
-//          // Saturation sensors
-//          int limsup = 1024;
-//          if (valor > limsup)
-//            valor = limsup;
-//
-//          if (valor < calibra[j][i])
-//            valor = calibra[j][i];
-//
-//          valor = map(valor, minsensor, limsup, 1, 254);
-//
-//          //          if(valor < 150)
-//          //            valor = 0;
-//          //          if(valor > 254)
-//          //            valor = 254;
-//
-//          Serial.print(valor);
-//          Serial.print("\t");
-//
-//        }
-//        // Serial.println();
-//      }
-//
-//
-//      // Test Delay
-//      delay(5000);
+      //      Serial.print(2);
+      //      Serial.print("\t");
+      //      for (int j = 0; j < ROW_SIZE; j++) {
+      //        if (j < ROW_SIZE / 2)
+      //          writeTopMux(j);
+      //        if (j >= ROW_SIZE / 2)
+      //          writeBottomMux(j - 16);
+      //
+      //        for (int i = 0; i < COL_SIZE; i++) {
+      //
+      //          valor = readMux(i);
+      //
+      //          // Saturation sensors
+      //          int limsup = 1024;
+      //          if (valor > limsup)
+      //            valor = limsup;
+      //
+      //          if (valor < calibra[j][i])
+      //            valor = calibra[j][i];
+      //
+      //          valor = map(valor, minsensor, limsup, 1, 254);
+      //
+      //          //          if(valor < 150)
+      //          //            valor = 0;
+      //          //          if(valor > 254)
+      //          //            valor = 254;
+      //
+      //          Serial.print(valor);
+      //          Serial.print("\t");
+      //
+      //        }
+      //        // Serial.println();
+      //      }
+      //
+      //
+      //      // Test Delay
+      //      delay(5000);
     }
-
   }
 }
 
@@ -228,7 +217,6 @@ void writeMux(byte channel) {
     digitalWrite(controlPin[i], muxChannel[channel][i]);
   }
 }
-
 
 void establishContact() {
   while (Serial.available() <= 0) {
